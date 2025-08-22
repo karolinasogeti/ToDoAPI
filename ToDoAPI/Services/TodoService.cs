@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using ToDoAPI.Models;
-    using static System.Runtime.InteropServices.JavaScript.JSType;
 
     namespace TodoApi
     {
@@ -28,10 +27,7 @@
                 if (!string.IsNullOrWhiteSpace(dueDate))
                 {
                     if (DateTime.TryParse(dueDate, out var tempDate))
-                        if (tempDate >= DateTime.Now)
                             parsedDate = tempDate;
-                        else 
-                            throw new ArgumentException("Förfallodatumet kan inte vara i det förflutna");
                     else
                         throw new ArgumentException("Datumformatet är ogiltigt");
                 }
@@ -44,6 +40,7 @@
                     Description = description,
                     DueDate = parsedDate
                 };
+
                 _todos.Add(todo);
                 return todo;
             }
@@ -73,10 +70,7 @@
                 if (!string.IsNullOrWhiteSpace(dueDate))
                 {
                     if (DateTime.TryParse(dueDate, out var tempDate))
-                        if (tempDate >= DateTime.Now)
                             parsedDate = tempDate;
-                        else
-                            throw new ArgumentException("Förfallodatumet kan inte vara i det förflutna");
                     else
                         throw new ArgumentException("Datumformatet är ogiltigt");
                 }

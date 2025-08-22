@@ -85,7 +85,10 @@ namespace ToDoAPI.Specs.Features
         
         public virtual async System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 6
+#line 7
+#line hidden
+#line 8
+ await testRunner.GivenAsync("att todo-listan är tom", ((string)(null)), ((global::Reqnroll.Table)(null)), "Givet ");
 #line hidden
         }
         
@@ -107,7 +110,7 @@ namespace ToDoAPI.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Visa tom todo-lista", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -117,13 +120,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 10
+#line 11
  await testRunner.WhenAsync("jag öppnar todo-appen", ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
 #line hidden
-#line 11
+#line 12
  await testRunner.ThenAsync("ska jag se att listan är tom", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
 #line hidden
             }
@@ -138,7 +141,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en ny todo", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -148,13 +151,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 14
+#line 15
  await testRunner.WhenAsync("jag lägger till en ny todo med titeln \"Handla mjölk\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
 #line hidden
-#line 15
+#line 16
  await testRunner.ThenAsync("ska todo-listan innehålla en todo med titeln \"Handla mjölk\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
 #line hidden
             }
@@ -173,7 +176,7 @@ await this.FeatureBackgroundAsync();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("titel", titel);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en ny todo med exempel", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -183,13 +186,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 18
+#line 20
  await testRunner.WhenAsync(string.Format("jag lägger till en ny todo med titeln {0}", titel), ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
 #line hidden
-#line 19
+#line 21
  await testRunner.ThenAsync(string.Format("ska todo-listan innehålla en todo med titeln {0}", titel), ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
 #line hidden
             }
@@ -204,7 +207,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till flera todos", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -214,166 +217,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-                global::Reqnroll.Table table3 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
                             "titel"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "Handla mjölk"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "Laga mat"});
-                table3.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "Städa"});
-#line 28
- await testRunner.WhenAsync("jag lägger till följande todos", ((string)(null)), table3, "När ");
-#line hidden
-#line 33
- await testRunner.ThenAsync("ska todo-listan innehålla 3 todos", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Lägga till en todo med detaljer")]
-        [Xunit.TraitAttribute("FeatureTitle", "Skapa todos")]
-        [Xunit.TraitAttribute("Description", "Lägga till en todo med detaljer")]
-        public async System.Threading.Tasks.Task LaggaTillEnTodoMedDetaljer()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en todo med detaljer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
-await this.FeatureBackgroundAsync();
+#line 31
+ await testRunner.WhenAsync("jag lägger till följande todos", ((string)(null)), table1, "När ");
 #line hidden
 #line 36
- await testRunner.WhenAsync("jag lägger till en ny todo med titeln \"Handla mjölk\", beskrivningen \"Köp mjölk fr" +
-                        "ån affären\" och förfallodatumet \"2025-10-01\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
-#line hidden
-#line 37
- await testRunner.ThenAsync("ska todo-listan innehålla en todo med titeln \"Handla mjölk\", beskrivningen \"Köp m" +
-                        "jölk från affären\" och förfallodatumet \"2025-10-01\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Lägga till en todo med detaljer (enklare att läsa)")]
-        [Xunit.TraitAttribute("FeatureTitle", "Skapa todos")]
-        [Xunit.TraitAttribute("Description", "Lägga till en todo med detaljer (enklare att läsa)")]
-        public async System.Threading.Tasks.Task LaggaTillEnTodoMedDetaljerEnklareAttLasa()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en todo med detaljer (enklare att läsa)", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 39
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
-await this.FeatureBackgroundAsync();
-#line hidden
-                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
-                            "titel",
-                            "beskrivning",
-                            "förfallodatum"});
-                table4.AddRow(new string[] {
-                            "Handla mjölk",
-                            "Köp mjölk från affären",
-                            "2025-10-01"});
-#line 40
- await testRunner.WhenAsync("jag lägger till en ny todo med", ((string)(null)), table4, "När ");
-#line hidden
-                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
-                            "titel",
-                            "beskrivning",
-                            "förfallodatum"});
-                table5.AddRow(new string[] {
-                            "Handla mjölk",
-                            "Köp mjölk från affären",
-                            "2025-10-01"});
-#line 43
- await testRunner.ThenAsync("ska todo-listan innehålla en todo med", ((string)(null)), table5, "Så ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Lägga till en todo med passerat datum")]
-        [Xunit.TraitAttribute("FeatureTitle", "Skapa todos")]
-        [Xunit.TraitAttribute("Description", "Lägga till en todo med passerat datum")]
-        public async System.Threading.Tasks.Task LaggaTillEnTodoMedPasseratDatum()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en todo med passerat datum", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 47
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 48
- await testRunner.WhenAsync("jag lägger till en ny todo med titeln \"Handla mjölk\", beskrivningen \"Köp mjölk fr" +
-                        "ån affären\" och förfallodatumet \"2022-01-01\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
-#line hidden
-#line 49
- await testRunner.ThenAsync("ska jag få felmeddelandet \"Förfallodatumet kan inte vara i det förflutna\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Lägga till en todo med felaktigt datumformat")]
-        [Xunit.TraitAttribute("FeatureTitle", "Skapa todos")]
-        [Xunit.TraitAttribute("Description", "Lägga till en todo med felaktigt datumformat")]
-        public async System.Threading.Tasks.Task LaggaTillEnTodoMedFelaktigtDatumformat()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Lägga till en todo med felaktigt datumformat", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 51
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 52
- await testRunner.WhenAsync("jag lägger till en ny todo med titeln \"Handla mjölk\", beskrivningen \"Köp mjölk fr" +
-                        "ån affären\" och förfallodatumet \"2023-31-12\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "När ");
-#line hidden
-#line 53
- await testRunner.ThenAsync("ska jag få felmeddelandet \"Datumformatet är ogiltigt\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
+ await testRunner.ThenAsync("ska todo-listan innehålla 3 todos", ((string)(null)), ((global::Reqnroll.Table)(null)), "Så ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

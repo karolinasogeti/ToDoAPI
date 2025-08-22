@@ -1,5 +1,4 @@
 using ToDoAPI.Models;
-using ToDoAPI.Services.TodoApi;
 using ToDoAPI.Specs.Support;
 
 namespace ToDoAPI.Specs.StepDefinitions
@@ -65,84 +64,6 @@ namespace ToDoAPI.Specs.StepDefinitions
         {
             var todos = _context.TodoService.GetAll();
             Assert.Equal(antal, todos.Count);
-        }
-
-        [When("jag lägger till en ny todo med titeln {string}, beskrivningen {string} och förfallodatumet {string}")]
-        public void WhenJagLaggerTillEnNyTodoMedTitelnBeskrivningenOchForfallodatumet(string titel, string beskrivning, string datum)
-        {
-            _context.LastException = null;
-            try
-            {
-                _context.TodoService.Add(titel, beskrivning, datum);
-            }
-            catch (Exception ex)
-            {
-                _context.LastException = ex;
-            }
-        }
-
-        [Then("ska todo-listan innehålla en todo med titeln {string}, beskrivningen {string} och förfallodatumet {string}")]
-        public void ThenSkaTodoListanInnehallaEnTodoMedTitelnBeskrivningenOchForfallodatumet(string titel, string beskrivning, string datum)
-        {
-            var todos = _context.TodoService.GetAll();
-
-            DateTime? expectedDate = null;
-            if (!string.IsNullOrWhiteSpace(datum))
-            {
-                if (DateTime.TryParse(datum, out var parsedDate))
-                    expectedDate = parsedDate;
-            }
-
-            Assert.Contains(todos, t =>
-                t.Title == titel &&
-                t.Description == beskrivning &&
-                t.DueDate == expectedDate
-            );
-        }
-
-        [When("jag lägger till en ny todo med")]
-        public void WhenJagLaggerTillEnNyTodoMed(DataTable dataTable)
-        {
-            foreach (var row in dataTable.Rows)
-            {
-                var titel = row["titel"];
-                var beskrivning = row["beskrivning"];
-                var datum = row["förfallodatum"];
-                _context.TodoService.Add(titel, beskrivning, datum);
-            }
-        }
-
-        [Then("ska todo-listan innehålla en todo med")]
-        public void ThenSkaTodo_ListanInnehallaEnTodoMed(DataTable dataTable)
-        {
-            var todos = _context.TodoService.GetAll();
-
-            foreach (var row in dataTable.Rows)
-            {
-                var titel = row["titel"].Trim('"');
-                var beskrivning = row["beskrivning"].Trim('"');
-                var datum = row["förfallodatum"].Trim('"');
-
-                DateTime? expectedDate = null;
-                if (!string.IsNullOrWhiteSpace(datum))
-                {
-                    if (DateTime.TryParse(datum, out var parsedDate))
-                        expectedDate = parsedDate;
-                }
-
-                Assert.Contains(todos, t =>
-                    t.Title == titel &&
-                    t.Description == beskrivning &&
-                    t.DueDate == expectedDate
-                );
-            }
-        }
-
-        [Then("ska jag få felmeddelandet {string}")]
-        public void ThenSkaJagFaFelmeddelandet(string felmeddelande)
-        {
-            Assert.NotNull(_context.LastException);
-            Assert.Contains(felmeddelande, _context.LastException.Message);
         }
     }
 }
