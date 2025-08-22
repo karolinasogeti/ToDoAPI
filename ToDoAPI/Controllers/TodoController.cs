@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using ToDoAPI.Models;
 using ToDoAPI.Services.TodoApi;
 
@@ -24,10 +22,17 @@ namespace TodoApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] Todo todo)
+        public IActionResult Add([FromBody] TodoCreateDto dto)
         {
-            var created = _service.Add(todo.Title);
-            return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
+            try
+            {
+                var created = _service.Add(dto.Title, dto.Description, dto.DueDate);
+                return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
@@ -35,6 +40,24 @@ namespace TodoApi.Controllers
         {
             _service.MarkCompleted(id);
             return NoContent();
+        }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult Edit(int id, [FromBody] TodoCreateDto dto)
+        {
+            try
+            {
+                _service.Edit(id, dto.Title, dto.Description, dto.DueDate);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]

@@ -2,15 +2,17 @@
 {
     using System.Collections.Generic;
     using ToDoAPI.Models;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
 
     namespace TodoApi
     {
         public interface ITodoService
         {
             IReadOnlyList<Todo> GetAll();
-            Todo Add(string title);
+            Todo Add(string title, string? description, string? dueDate);
             void MarkCompleted(int id);
             void Delete(int id);
+            void Edit(int id, string title, string? description, string? dueDate);
         }
 
         public class TodoService : ITodoService
@@ -20,9 +22,28 @@
 
             public IReadOnlyList<Todo> GetAll() => _todos;
 
-            public Todo Add(string title)
+            public Todo Add(string title, string? description, string? dueDate)
             {
-                var todo = new Todo { Id = _nextId++, Title = title, IsCompleted = false };
+                DateTime? parsedDate = null;
+                if (!string.IsNullOrWhiteSpace(dueDate))
+                {
+                    if (DateTime.TryParse(dueDate, out var tempDate))
+                        if (tempDate >= DateTime.Now)
+                            parsedDate = tempDate;
+                        else 
+                            throw new ArgumentException("Förfallodatumet kan inte vara i det förflutna");
+                    else
+                        throw new ArgumentException("Datumformatet är ogiltigt");
+                }
+
+                var todo = new Todo
+                {
+                    Id = _nextId++,
+                    Title = title,
+                    IsCompleted = false,
+                    Description = description,
+                    DueDate = parsedDate
+                };
                 _todos.Add(todo);
                 return todo;
             }
@@ -37,6 +58,32 @@
             {
                 var todo = _todos.Find(t => t.Id == id);
                 if (todo != null) _todos.Remove(todo);
+            }
+
+            public void Edit(int id, string title, string? description, string? dueDate)
+            {
+                var todo = _todos.Find(t => t.Id == id);
+                if (todo == null)
+                    throw new KeyNotFoundException("Todo med angivet id hittades inte.");
+
+                if (string.IsNullOrWhiteSpace(title))
+                    throw new ArgumentException("Titeln kan inte vara tom");
+
+                DateTime? parsedDate = null;
+                if (!string.IsNullOrWhiteSpace(dueDate))
+                {
+                    if (DateTime.TryParse(dueDate, out var tempDate))
+                        if (tempDate >= DateTime.Now)
+                            parsedDate = tempDate;
+                        else
+                            throw new ArgumentException("Förfallodatumet kan inte vara i det förflutna");
+                    else
+                        throw new ArgumentException("Datumformatet är ogiltigt");
+                }
+
+                todo.Title = title;
+                todo.Description = description;
+                todo.DueDate = parsedDate;
             }
         }
     }
